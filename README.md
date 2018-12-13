@@ -227,14 +227,23 @@ clients|Latency(median)|Latency(mean)|Latency(P99)|Latency(max)|QPS|CPU
 50|0|1ms|13ms|200ms|28k|1400%
 100|0|1ms|200ms|210ms|31k|1600%
 
-|100 requests|1k requests|1w requests|10w requests -------------|-------------|-------------|-------------|------------- grpc短连接|took 50 ms for 100 requests throughput (TPS) : 2000|took 564 ms for 1000 requests throughput (TPS) : 1773|took 5160 ms for 10000 requests throughput (TPS) : 1937|took 192500 ms for 100000 requests throughput (TPS) : 519 grpc长连接|took 16 ms for 100 requests throughput (TPS) : 6250|took 181 ms for 1000 requests throughput (TPS) : 5524| took 1442 ms for 10000 requests throughput (TPS) : 6934| took 16359 ms for 100000 requests throughput (TPS) : 6112 thrift短连接| took 22 ms for 100 requests throughput (TPS) : 4545| took 276 ms for 1000 requests throughput (TPS) : 3623| took 2912 ms for 10000 requests throughput (TPS) : 3434|
-thrift长连接| took 12 ms for 100 requests throughput (TPS) : 8333| took 81 ms for 1000 requests throughput (TPS) : 12345| took 832 ms for 10000 requests throughput (TPS) : 12019| took 9122 ms for 100000 requests throughput (TPS) : 10962 http短连接| took 58 ms for 100 requests throughput (TPS) : 1724| took 517 ms for 1000 requests throughput (TPS) : 1934| took 5664 ms for 10000 requests throughput (TPS) : 1765|
-http长连接| took 10 ms for 100 requests throughput (TPS) : 10000| took 74 ms for 1000 requests throughput (TPS) : 13513| took 719 ms for 10000 requests throughput (TPS) : 13908| took 8379 ms for 100000 requests throughput (TPS) : 11934| tcp短连接| took 46 ms for 100 requests throughput (TPS) : 2173| took 503 ms for 1000 requests throughput (TPS) : 1988| took 4696 ms for 10000 requests throughput (TPS) : 2129|
+ |100 requests|1k requests|1w requests|10w requests
+-------------|-------------|-------------|-------------|-------------
+grpc短连接|took 50 ms for 100 requests throughput (TPS) : 2000|took 564 ms for 1000 requests throughput (TPS) : 1773|took 5160 ms for 10000 requests throughput (TPS) : 1937|took 192500 ms for 100000 requests throughput (TPS) : 519 
+grpc长连接|took 16 ms for 100 requests throughput (TPS) : 6250|took 181 ms for 1000 requests throughput (TPS) : 5524| took 1442 ms for 10000 requests throughput (TPS) : 6934| took 16359 ms for 100000 requests throughput (TPS) : 6112 
+thrift短连接| took 22 ms for 100 requests throughput (TPS) : 4545| took 276 ms for 1000 requests throughput (TPS) : 3623| took 2912 ms for 10000 requests throughput (TPS) : 3434|\
+thrift长连接| took 12 ms for 100 requests throughput (TPS) : 8333| took 81 ms for 1000 requests throughput (TPS) : 12345| took 832 ms for 10000 requests throughput (TPS) : 12019| took 9122 ms for 100000 requests throughput (TPS) : 10962 
+http短连接| took 58 ms for 100 requests throughput (TPS) : 1724| took 517 ms for 1000 requests throughput (TPS) : 1934| took 5664 ms for 10000 requests throughput (TPS) : 1765|\
+http长连接| took 10 ms for 100 requests throughput (TPS) : 10000| took 74 ms for 1000 requests throughput (TPS) : 13513| took 719 ms for 10000 requests throughput (TPS) : 13908| took 8379 ms for 100000 requests throughput (TPS) : 11934| 
+tcp短连接| took 46 ms for 100 requests throughput (TPS) : 2173| took 503 ms for 1000 requests throughput (TPS) : 1988| took 4696 ms for 10000 requests throughput (TPS) : 2129|\
 tcp长连接| took 10 ms for 100 requests throughput (TPS) : 10000| took 79 ms for 1000 requests throughput (TPS) : 12658| took 722 ms for 10000 requests throughput (TPS) : 13850| took 8133 ms for 100000 requests throughput (TPS) : 12295| \
 
-1、丢包率为0 sent requests : 100 received requests : 100 received requests_OK : 100
+1、丢包率为0
+sent     requests    : 100
+received requests    : 100
+received requests_OK : 100
 
-2、在requests增加到10w的时候，thrift短连接报错（Error opening socket to 127.0.0.1:19090 dial tcp 127.0.0.1:8972: connect: can't assign requested address），而http和tcp的短连接在call的时候报错（panic: runtime error: invalid memory address or nil pointer dereference）
+2、在requests增加到10w的时候，thrift短连接报错（Error opening socket to 127.0.0.1:19090   dial tcp 127.0.0.1:8972: connect: can't assign requested address），而http和tcp的短连接在call的时候报错（panic: runtime error: invalid memory address or nil pointer dereference）
 
 
 
